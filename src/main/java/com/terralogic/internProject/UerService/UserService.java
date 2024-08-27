@@ -90,7 +90,7 @@ public class UserService {
       {
           throw new UserNotFoundException("User cannot be found, please sing up ");
       }
-      else
+      else if( user.getPassword().equals(password))
       {
 
           Authentication authentication = new UsernamePasswordAuthenticationToken(username, password);
@@ -98,6 +98,12 @@ public class UserService {
           String jwt = jwtGenerator.CreateString(authentication) ;
 
           return ResponseEntity.ok(jwt) ;
+
+      }
+      else
+      {
+          return ResponseEntity.ok("Please enter the right password") ;
+
 
       }
 
